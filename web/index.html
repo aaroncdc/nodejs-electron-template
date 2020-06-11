@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Electron Interface</title>
+    <!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <script>
+      const {ipcRenderer} = require('electron')
+      const $ = require('jquery');
+      require('popper.js');
+      require('bootstrap');
+    </script>
+    <link rel="stylesheet" href="framework/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="style/main.css" />
+  </head>
+  <body>
+    <div class="maincontainer">
+      <div class="w-100">
+        <div class="row">
+          <div class="col-sm-12">
+            <h1>Electron Interface Template</h1>
+            <h4>By Aarón C.d.C (<a href="https://github.com/aaroncdc/">Github</a>)</h4><br>
+          </div>
+        </div>
+        <div class = "row logos">
+          <div class="col-sm-6"><img src="images/electron.png" class="imglogo"/></div>
+          <div class="col-sm-6"><img src="images/node.png" class="imglogo"/></div>
+        </div>
+        <div class="row description">
+          <p>This template is a quick start for your electron projects. The main node script is in <b><i>main.js</i></b>. You can find the interface files inside the <b><i>web</i></b> directory. This directory includes directories for frameworks, images, resources, scripts and stylesheets. The main page is in the <b><i>index.html</i></b> file.</p>
+          <p>This template incorporates jquery, bootstrap, and popper.js.</p>
+            <p>To run the project, first install it:</p>
+            <quote>$ npm install</quote>
+            <p>Then run it: </p>
+            <quote>$ npm start</quote>
+            <p>Or also:</p>
+            <quote>$ node .</quote>
+          <p>To make the window border-less, set the <b><i>frame</i></b> property to false in <b><i>main.js</i></b>. You can later manipulate the window through your interface by adding some events and using the <b><i>show, minimize, and restore</i></b> functions (among others. See the <a href="https://www.electronjs.org/docs/api/browser-window"> Electron JS API docs</a>).</p>
+          <p>To interact with the node interpreter from the interface, create a new event in your <b><i>main.js</i></b> file using the instance of ipcMain, then send an event from the interface using ipcRenderer. Example:</p>
+          <b>main.js</b>
+          <quote><pre>ipcMain.on('buttonPress', (event,button) => {
+  console.log("You pressed the button: " + button);
+})</pre></quote>
+        <b>On you interface's JS:</b>
+        <quote><pre>$(".btn").click(function() {
+  console.log("Value: " + $(this).val());
+  ipcRenderer.send('buttonPress', $(this).val());
+});</pre></quote>
+<p>Once you are done with your electron program, on Windows, you can package it using something like <a href="https://github.com/electron/electron-packager">electron-packager</a> to package it into an executable and distribute it if you wish. You can create an installer with something like <a href="https://jrsoftware.org/isinfo.php">Inno Setup</a> or <a href="https://nsis.sourceforge.io/Main_Page">NSIS</a>.</p>
+<p>This is just a template for a quick start, and has no license. Meaning that you can use it however you like.</p>
+        </div>
+        <br>
+      </div>
+      <div class="row">
+        <div class="col-sm-4 testcol">Click on me!</div>
+        <div class="col-sm-4 testcol">Click on me!</div>
+        <div class="col-sm-4 testcol">Click on me!</div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-4 testcol">
+        <button type="button" class="btn btn-light" value="1">Button 1</button>
+      </div>
+      <div class="col-sm-4 testcol">
+        <button type="button" class="btn btn-light" value="2">Button 2</button>
+      </div>
+      <div class="col-sm-4 testcol">
+        <button type="button" class="btn btn-light" value="3">Button 3</button>
+      </div>
+    </div>
+
+  </body>
+  <script src="scripts/main.js"></script>
+</html>
